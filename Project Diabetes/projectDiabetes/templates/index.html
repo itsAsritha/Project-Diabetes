@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Diabetes Prediction System</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dbeafe, #e9d5ff);
+            margin: 0;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        h1 {
+            text-align: center;
+            color: #3730a3;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6366f1;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 30px;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3730a3;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 18px;
+            background-color: #eef2ff;
+            border-left: 5px solid #4f46e5;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .result h3 {
+            color: #3730a3;
+            margin-top: 0;
+        }
+
+        .result p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #334155;
+        }
+
+        @media (max-width: 600px) {
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 22px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Diabetes Prediction</h1>
+
+        <p class="description">
+            Enter your details to get an ML-based prediction
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <div class="form-group">
+
+                <div class="input-box">
+                    <label>Number of Pregnancies</label>
+                    <input type="number" step="any"
+                           name="num_preg" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Glucose Concentration</label>
+                    <input type="number" step="any"
+                           name="glucose_conc" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Diastolic Blood Pressure</label>
+                    <input type="number" step="any"
+                           name="diastolic_bp" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Insulin</label>
+                    <input type="number" step="any"
+                           name="insulin" required>
+                </div>
+
+                <div class="input-box">
+                    <label>BMI</label>
+                    <input type="number" step="any"
+                           name="bmi" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Diabetes Pedigree Function</label>
+                    <input type="number" step="any"
+                           name="diab_pred" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Age</label>
+                    <input type="number" step="any"
+                           name="age" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Skin Thickness</label>
+                    <input type="number" step="any"
+                           name="skin" required>
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict Diabetes
+            </button>
+
+        </form>
+
+        {% if prediction_text %}
+
+        <div class="result">
+
+            <h3>Prediction Result</h3>
+
+            <p>{{ prediction_text }}</p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
